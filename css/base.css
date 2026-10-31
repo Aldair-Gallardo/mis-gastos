@@ -1,0 +1,197 @@
+/* ==========================================================
+   base.css — Reset, tipografía y variables de tema
+   Temas: claro (índigo) y noche (negro + morado).
+   El tema se aplica con <html data-theme="light|dark">.
+   ========================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  background: var(--bg);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, p {
+  margin: 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: var(--accent-text);
+}
+
+img,
+svg {
+  display: block;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ---------- Tema claro ---------- */
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #F3F4F8;
+  --surface: #FFFFFF;
+  --surface-2: #ECEEF4;
+  --surface-3: #E6E8F0;
+  --border: #E3E5EE;
+  --border-strong: #DCDFEA;
+  --text: #14152B;
+  --muted: #5A5E72;
+  --subtle: #62667A;
+  --accent: #4F46E5;
+  --accent-text: #4F46E5;
+  --accent-soft: #ECEBFF;
+  --accent-soft-text: #3730A3;
+  --on-accent: #FFFFFF;
+  --accent-shadow: rgba(79, 70, 229, 0.32);
+  --focus: rgba(79, 70, 229, 0.45);
+
+  --hero-bg: #1B1847;
+  --hero-border: #1B1847;
+  --hero-tile: #2A2663;
+  --hero-track: #3A3578;
+  --hero-muted: #C7C4F2;
+  --hero-bar: #A5B4FC;
+  --hero-income: #7DD3FC;
+  --hero-expense: #FDA4AF;
+
+  --income: #0369A1;
+  --danger: #B42318;
+  --danger-soft: #FDE7E5;
+
+  --warn-bg: #FCE5D6;
+  --warn-text: #9A3A06;
+  --warn-bar: #C2560F;
+
+  --chip-active-bg: #14152B;
+  --chip-active-text: #FFFFFF;
+
+  --bar-muted: #C9CCF6;
+  --switch-off: #DCDFEA;
+  --backdrop: rgba(20, 21, 43, 0.45);
+  --shadow: 0 10px 30px rgba(20, 21, 43, 0.12);
+}
+
+/* ---------- Tema noche ---------- */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0B0A10;
+  --surface: #16141E;
+  --surface-2: #2A2638;
+  --surface-3: #211E2C;
+  --border: #252131;
+  --border-strong: #2E2A3A;
+  --text: #F3F1F8;
+  --muted: #A7A1B8;
+  --subtle: #8E88A0;
+  --accent: #7C3AED;
+  --accent-text: #B79CFF;
+  --accent-soft: #2C2047;
+  --accent-soft-text: #D6C6FF;
+  --on-accent: #FFFFFF;
+  --accent-shadow: rgba(124, 58, 237, 0.45);
+  --focus: rgba(183, 156, 255, 0.6);
+
+  --hero-bg: #1E1630;
+  --hero-border: #3A2A5E;
+  --hero-tile: #2A1F42;
+  --hero-track: #3A2A5E;
+  --hero-muted: #C3B8DE;
+  --hero-bar: #B79CFF;
+  --hero-income: #5EE0A4;
+  --hero-expense: #FF9E8A;
+
+  --income: #5EE0A4;
+  --danger: #FF8A80;
+  --danger-soft: #3A1A1A;
+
+  --warn-bg: #3A2418;
+  --warn-text: #FFB98F;
+  --warn-bar: #FFA36B;
+
+  --chip-active-bg: #7C3AED;
+  --chip-active-text: #FFFFFF;
+
+  --bar-muted: #3A2A5E;
+  --switch-off: #2E2A3A;
+  --backdrop: rgba(0, 0, 0, 0.6);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- Colores de categoría ---------- */
+.cat-blue   { --c-bg: #E7ECFB; --c-fg: #2F4FC4; }
+.cat-orange { --c-bg: #FCEBDF; --c-fg: #B4460B; }
+.cat-teal   { --c-bg: #DDF1F3; --c-fg: #0B6E7D; }
+.cat-purple { --c-bg: #EEE8FC; --c-fg: #5B3BC4; }
+.cat-pink   { --c-bg: #FBE6EE; --c-fg: #B0204F; }
+.cat-sky    { --c-bg: #E0F2FE; --c-fg: #0369A1; }
+.cat-amber  { --c-bg: #F6EED8; --c-fg: #8A6410; }
+.cat-gray   { --c-bg: #ECEEF4; --c-fg: #4A4E63; }
+.cat-indigo { --c-bg: #E4E5FF; --c-fg: #4338CA; }
+
+:root[data-theme="dark"] .cat-blue   { --c-bg: #1D2340; --c-fg: #8EA6FF; }
+:root[data-theme="dark"] .cat-orange { --c-bg: #33211A; --c-fg: #FFA36B; }
+:root[data-theme="dark"] .cat-teal   { --c-bg: #12292D; --c-fg: #5ED3E0; }
+:root[data-theme="dark"] .cat-purple { --c-bg: #261E3D; --c-fg: #C5A8FF; }
+:root[data-theme="dark"] .cat-pink   { --c-bg: #331A26; --c-fg: #FF7FAE; }
+:root[data-theme="dark"] .cat-sky    { --c-bg: #12273A; --c-fg: #7DD3FC; }
+:root[data-theme="dark"] .cat-amber  { --c-bg: #2E2814; --c-fg: #F2CC60; }
+:root[data-theme="dark"] .cat-gray   { --c-bg: #22202C; --c-fg: #B5B0C4; }
+:root[data-theme="dark"] .cat-indigo { --c-bg: #211F45; --c-fg: #A5B4FC; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

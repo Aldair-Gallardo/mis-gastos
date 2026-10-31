@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mis Gastos · Controla tus gastos desde tu celular</title>
+  <meta name="description" content="Anota tus gastos en segundos, mira a dónde va tu dinero y guarda todo en Excel. Para iPhone, Android, iPad y tabletas.">
+
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#F3F4F8">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Mis Gastos">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+
+  <script>
+    (function () {
+      // Si ya se abrió como app instalada, ir directo a la app
+      var standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+      if (standalone) { location.replace('app.html'); return; }
+      try {
+        var pref = localStorage.getItem('mg-theme') || 'system';
+        var dark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      } catch (e) {}
+      // Guardamos el aviso de instalación por si llega antes de que cargue landing.js
+      window.addEventListener('beforeinstallprompt', function (e) {
+        e.preventDefault();
+        window.__mgInstallPrompt = e;
+      });
+    })();
+  </script>
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+  <div class="landing">
+
+    <header class="l-container l-nav">
+      <a href="#inicio" class="l-brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M7 19v-6M12 19V6M17 19v-8"/></svg>
+        </span>
+        Mis Gastos
+      </a>
+      <nav class="l-nav__links" aria-label="Principal">
+        <a class="l-nav__link" href="#funciones">Funciones</a>
+        <a class="l-nav__link" href="#instalar">Cómo instalar</a>
+        <button type="button" class="btn btn--dark" data-install>Instalar app</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="inicio" class="l-container l-hero">
+        <div class="l-hero__text">
+          <span class="l-pill">Para iPhone, Android, iPad y tabletas</span>
+          <h1 class="l-title">Tus gastos, claros y bajo control.</h1>
+          <p class="l-lead">Anota en segundos lo que gastas, mira a dónde se va tu dinero y guarda todo en Excel. Se instala en tu pantalla de inicio como cualquier app.</p>
+          <div class="l-actions">
+            <button type="button" class="btn btn--primary" data-install>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"/><path d="M5 19h14"/></svg>
+              Instalar app
+            </button>
+            <a class="btn btn--secondary" href="app.html">Usar en el navegador</a>
+          </div>
+          <p class="l-fineprint">Gratis · Sin crear cuenta · Tus datos se quedan en tu dispositivo</p>
+        </div>
+
+        <div class="l-hero__art">
+          <div class="phones" role="img" aria-label="La app en modo claro y en modo noche">
+            <div class="phone phone--dark" aria-hidden="true">
+              <span class="phone__month">Octubre 2026</span>
+              <div class="phone__hero">
+                <span class="phone__small">Te queda este mes</span>
+                <span class="phone__big">$1,284.50</span>
+              </div>
+              <div class="phone__card" style="height:70px"></div>
+              <div class="phone__card" style="height:110px"></div>
+            </div>
+            <div class="phone phone--light" aria-hidden="true">
+              <span class="phone__month">Octubre 2026</span>
+              <div class="phone__hero">
+                <span class="phone__small">Te queda este mes</span>
+                <span class="phone__big">$1,284.50</span>
+                <div class="phone__line" style="gap:6px">
+                  <span style="flex:1;background:#2A2663;border-radius:8px;padding:5px 6px;font-size:8px;font-weight:700;color:#7DD3FC">+$2,400</span>
+                  <span style="flex:1;background:#2A2663;border-radius:8px;padding:5px 6px;font-size:8px;font-weight:700;color:#FDA4AF">−$1,115</span>
+                </div>
+              </div>
+              <div class="phone__card">
+                <div class="phone__line"><span>Supermercado</span><span>−$24.50</span></div>
+                <div class="phone__line"><span>Gasolina</span><span>−$40.00</span></div>
+                <div class="phone__line"><span>Salario</span><span style="color:#0369A1">+$1,200</span></div>
+              </div>
+              <div class="phone__card">
+                <div class="phone__line"><span>Comida</span><span>$342.80</span></div>
+                <div class="bar bar--thin cat-orange"><div class="bar__fill bar__fill--cat" style="width:76%"></div></div>
+                <div class="phone__line"><span>Casa</span><span>$450.00</span></div>
+                <div class="bar bar--thin cat-blue"><div class="bar__fill bar__fill--cat" style="width:100%"></div></div>
+              </div>
+              <span class="phone__fab">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="funciones" class="l-section l-section--surface" aria-labelledby="fun-title">
+        <div class="l-container">
+          <div class="l-section__head">
+            <h2 class="l-h2" id="fun-title">Todo lo que necesitas, nada que estorbe</h2>
+            <p class="l-p">Pensada para usarla todos los días: abrir, anotar y listo.</p>
+          </div>
+          <div class="l-grid">
+            <article class="l-feature">
+              <span class="cat-icon cat-indigo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></span>
+              <h3>Anota en segundos</h3>
+              <p>Monto, categoría y listo. Gastos e ingresos en el mismo lugar.</p>
+            </article>
+            <article class="l-feature">
+              <span class="cat-icon cat-sky"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12A9 9 0 1 1 12 3v9z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z"/></svg></span>
+              <h3>Gráficas claras</h3>
+              <p>Ve de un vistazo en qué categoría se va más dinero cada mes y cada año.</p>
+            </article>
+            <article class="l-feature">
+              <span class="cat-icon cat-orange"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2.4 18a2 2 0 0 0 1.7 3h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span>
+              <h3>Presupuestos con aviso</h3>
+              <p>Pon un límite por categoría y te avisa cuando te estás acercando.</p>
+            </article>
+            <article class="l-feature">
+              <span class="cat-icon cat-purple"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 2l3 3-3 3"/><path d="M4 11V9a4 4 0 0 1 4-4h12"/><path d="M7 22l-3-3 3-3"/><path d="M20 13v2a4 4 0 0 1-4 4H4"/></svg></span>
+              <h3>Gastos que se repiten</h3>
+              <p>Alquiler, internet o streaming se anotan solos cada mes.</p>
+            </article>
+            <article class="l-feature">
+              <span class="cat-icon cat-teal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h8M12 11v8"/></svg></span>
+              <h3>Respaldo en Excel</h3>
+              <p>Un archivo por mes que puedes guardar en la nube e importar cuando cambies de teléfono.</p>
+            </article>
+            <article class="l-feature">
+              <span class="cat-icon cat-purple"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></span>
+              <h3>Modo claro y noche</h3>
+              <p>Cambia sola según tu dispositivo, o elige el estilo que prefieras.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="l-section" aria-labelledby="dev-title">
+        <div class="l-container">
+          <div class="l-section__head">
+            <h2 class="l-h2" id="dev-title">Se adapta a cualquier pantalla</h2>
+            <p class="l-p">En el celular se ve en una columna. En tablet aprovecha el espacio con menú lateral y más información a la vista.</p>
+          </div>
+          <div class="l-grid l-grid--4">
+            <div class="l-device"><strong>iPhone</strong><span>Desde Safari</span></div>
+            <div class="l-device"><strong>Android</strong><span>Desde Chrome</span></div>
+            <div class="l-device"><strong>iPad</strong><span>Vertical u horizontal</span></div>
+            <div class="l-device"><strong>Tabletas y computadoras</strong><span>Chrome, Edge o Safari</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="instalar" class="l-section l-section--surface" aria-labelledby="ins-title">
+        <div class="l-container">
+          <div class="l-section__head">
+            <h2 class="l-h2" id="ins-title">Instálala en un minuto</h2>
+          </div>
+          <div class="l-grid">
+            <div class="l-steps">
+              <h3>Android y tabletas Android</h3>
+              <ol>
+                <li>Abre esta página en <strong>Chrome</strong>.</li>
+                <li>Toca <strong>Instalar app</strong> y confirma.</li>
+                <li>El ícono aparece en tu pantalla de inicio.</li>
+              </ol>
+            </div>
+            <div class="l-steps">
+              <h3>iPhone y iPad</h3>
+              <ol>
+                <li>Abre esta página en <strong>Safari</strong> y toca <strong>Instalar app</strong>.</li>
+                <li>Toca el botón <strong>Compartir</strong> y luego <strong>Agregar a inicio</strong>.</li>
+                <li>Ábrela desde su ícono y verás la confirmación.</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="l-section" aria-labelledby="pri-title">
+        <div class="l-container">
+          <div class="l-band">
+            <div class="l-band__text">
+              <h2 class="l-h2" id="pri-title">Tus datos son tuyos</h2>
+              <p>Todo se guarda en tu dispositivo, sin cuentas ni servidores. Respalda en Excel cuando quieras y llévate tu historial a cualquier teléfono.</p>
+            </div>
+            <button type="button" class="btn btn--light" data-install>Instalar app</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="l-container l-footer">
+      <span>Mis Gastos</span>
+      <span>Funciona sin conexión una vez instalada</span>
+    </footer>
+  </div>
+
+  <div id="toast-root" class="toast-root" role="status" aria-live="polite"></div>
+
+  <script type="module" src="js/landing.js"></script>
+</body>
+</html>
